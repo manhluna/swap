@@ -1,0 +1,133 @@
+ <div class="social-aside">
+     <ul>
+         <a class="social-aside-unit" href=""><li><i class="fa fa-facebook"></i></li></a>
+         <a class="social-aside-unit" href=""><li><i class="fa fa-youtube text-danger"></i></li></a>
+         <a class="social-aside-unit" href=""><li><i class="fa fa-twitter text-primary"></i></li></a>
+         <a class="social-aside-unit" href=""><li><i class="fa fa-reddit text-dark"></i></li></a>
+         <a class="social-aside-unit" href=""><li><i class="fa fa-telegram"></i></li></a>
+     </ul>
+ </div>
+ <!--footer area start-->
+ <div class="footera-area section-padding wow fadeInDown">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-footer">
+                    <div class="logo-area footer">
+                        <a href="#"><img src="./../assets/img/logo-top.png" alt=""></a>
+                    </div>
+                    <div class="space-20"></div>
+                    <p>The only platform that allows the
+                        exchange of WB Token and BTC of
+                        WBank</p>
+                    <div class="space-10"></div>
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">WBank</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-2">
+                <div class="single-footer">
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-2">
+                <div class="single-footer">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/review">Review</a></li>
+                        <li><a href="#">Exchange</a></li>
+                        <li><a href="#">White Paper</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-footer">
+                    <p>Subscribe to our Newsletter</p>
+                    <div class="space-20"></div>
+                    <div class="footer-form">
+                        <form action="#">
+                            <input type="email" placeholder="Email Address">
+                            <a href="" class="gradient-btn subscribe">GO</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer area end-->
+<button onclick="topFunction()" id="myBtn"=>Top</button>
+<!-- jquery 2.2.4 js-->
+<script src="./../assets/js/jquery-2.2.4.min.js"></script>
+<!-- popper js-->
+<script src="./../assets/js/popper.js"></script>
+<!-- carousel js-->
+<script src="./../assets/js/owl.carousel.min.js"></script>
+<!-- wow js-->
+<script src="./../assets/js/wow.min.js"></script>
+<!-- bootstrap js-->
+<script src="./../assets/js/bootstrap.min.js"></script>\
+<!--skroller js-->
+<script src="./../assets/js/skrollr.min.js"></script>
+<!--mobile menu js-->
+<script src="./../assets/js/jquery.slicknav.min.js"></script>
+<!--particle s-->
+<script src="./../assets/js/particles.min.js"></script>
+<!-- main js-->
+<script src="./../assets/js/main.js"></script>
+<script src="./../socket.js"></script>
+<script>
+    jQuery(document).ready(function (){
+        jQuery("div#lg-re a.logibtn").on("click", function(){
+            jQuery("ul.account-show").toggleClass("active");
+        });
+
+        jQuery(".layer-depo ul li:nth-child(1)").on("click", function(){   
+            jQuery(".create-layout").removeClass("active");
+            jQuery(".layer-depo ul li").removeClass("active");
+            jQuery(this).addClass("active");
+            jQuery(".create-layout:nth-child(1)").addClass("active");   
+        });
+        jQuery(".layer-depo ul li:nth-child(2)").on("click", function(){   
+            jQuery(".create-layout").removeClass("active");
+            jQuery(".layer-depo ul li").removeClass("active");
+            jQuery(this).addClass("active");
+            jQuery(".create-layout:nth-child(2)").addClass("active");   
+        });
+        jQuery(".layer-depo ul li:nth-child(3)").on("click", function(){   
+            jQuery(".create-layout").removeClass("active");
+            jQuery(".layer-depo ul li").removeClass("active");
+            jQuery(this).addClass("active");
+            jQuery(".create-layout:nth-child(3)").addClass("active");   
+        });
+        
+    });
+    //Get the button:
+    mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+    
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script>
+    new ClipboardJS('#btnCopy');
+    new ClipboardJS('#btnCopy2');
+</script>
+</body>
+</html>

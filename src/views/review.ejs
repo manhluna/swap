@@ -1,0 +1,134 @@
+<%- include("./layout/header"); -%>
+
+    <!--welcome area start-->
+    <div class="welcome-area bv wow fadeInUp" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="welcome-header">
+                        <h1>World Bank Group Ecosystem Review</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--welcome area end-->
+
+    <!--single blog area start-->
+    <div class="single-blog-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9 offset-1">
+                    <P>We would like to thank all members of the World Bank Group, users and investors who have trusted
+                        and followed WorldBank since we started the project. 2020 will be the breakthrough year of the
+                        cryptocurrency market, we want to bring huge profits to all of you. Therefore, through the basic
+                        information of the World Bank ecosystem below, we need the input and feedback from all of you.
+                        From there we will enhance the user experience, creating the maximum benefit for the cooperation
+                        between us and all of you in 2020. Thank all very much.</P>
+                    <div class="space-10"></div>
+                    <a href="#" class="single-blog-h4">The current and 2020 World Bank Group ecosystems will include</a>
+                    <div class="space-20"></div>
+                    <h6>- Decentralized electronic wallet</h6>
+                    <h6>- Decentralized cryptocurrency exchange</h6>
+                    <h6>- Decentralized game</h6>
+                    <h6>- Decentralized social network</h6>
+                    <h6>- Digital banking on Blockchain platform</h6>
+                    <div class="space-20"></div>
+                    <a href="#" class="single-blog-h4">Some of our current websites:</a>
+                    <div class="space-20"></div>
+                    <h6>- Theworldbank.group</h6>
+                    <h6>- Wbankwallet.com</h6>
+                    <h6>- dapp.theworldbank.group</h6>
+                    <div class="space-30"></div>
+                    <!--community area start-->
+    <div class="community-area wow fadeInUp section-padding" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="heading">
+                        <h5>GReat Community</h5>
+                        <div class="space-10"></div>
+                        <h1>Our Community </h1>
+                    </div>
+                <div class="space-60"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-lg">
+                    <div class="single-community mid-social">
+                        <a class="google-plus" href="https://www.youtube.com/channel/UCwMHCdofMpZuUcCr1SB_47g?view_
+                        as=subscriber"><i class="fa fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg">
+                    <div class="single-community mid-social">
+                        <a class="linkedin" href="https://t.me/WbTokenOfficial"><i class="fa fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg">
+                    <div class="single-community mid-social">
+                        <a class="behance" href="https://www.reddit.com/r/WB_Wallet/"><i class="fa fa-reddit"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg">
+                    <div class="single-community mid-social">
+                        <a class="youtube" href="https://www.youtube.com/channel/UCwMHCdofMpZuUcCr1SB_47g?view_
+                        as=subscriber"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg">
+                    <div class="single-community mid-social">
+                        <a class="twitter" href="https://twitter.com/Worldbankwallet"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--community area end-->
+                    <div class="space-50"></div>
+    
+                    <div class="single-blog-contact">
+                        <h4>leave a comment</h4>
+                        <div class="space-30"></div>
+                        <form action="/posts" method="post">
+                            <div class="space-30"></div>
+                            <textarea type="text" name="comment" id="" cols="30" rows="6" placeholder="say something"></textarea>
+                            <div class="space-30"></div>
+                            <input class="gradient-btn" type="submit" value="Comment Now">
+                        </form>
+                        <div class="space-50"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-9 offset-1">
+                    <div class="blog-comment">
+                        <h4><%= countPost %> comments</h4>
+                        <div class="space-30"></div>
+                    </div>
+                    <div class="space-10"></div>
+                    <% posts.forEach(function (post){%>
+                    <div class="blog-comment">
+                        <div class="single-comment">
+                            <div class="comment-img">
+                                <img src="assets/img/default.png" alt="">
+                                <div class="space-10"></div>
+                                <p><strong><%= post.username %></strong></p>
+                            </div>
+                            <div class="comment-text-form">
+                                <small></small><strong><%= new Date(post.createdAt).toUTCString(); %></strong></small>
+                                <div class="space-10"></div>
+                                <p><%= post.comment %></p>
+                                <div class="space-10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-30"></div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--single blog area end-->
+
+<%- include("./layout/footer"); -%>

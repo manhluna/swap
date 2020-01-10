@@ -1,0 +1,218 @@
+<%- include("./../layout/header"); -%> 
+
+    <!--welcome area start-->
+    <div class="welcome-area wow fadeInUp" id="home">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="space-100"></div>
+            <div class="db-title text-center">
+                <h3>YOUR DASHBOARD</h3>
+            </div>
+            <div class="space-50"></div>
+            <hr class="bg-white">
+            <div class="space-30"></div>
+            <div class="row">
+                <div class="col-lg-5 col-sm-12 offset-lg-1">
+                    <div class="assets-box text-center">
+                        <h6>Bitcoin</h6>
+                        <div class="space-10"></div>
+                        <h3 id="amountBtcCoin"></h3>
+                        <div class="space-10"></div>
+                        <p><span id="btcPrice" style="color: rgb(10, 233, 10); font-weight: bold;"></span> $</p>
+                    </div>
+                </div>>
+                <div class="col-lg-5 col-sm-12">
+                    <div class="assets-box text-center">
+                        <h6>WBank Token</h6>
+                        <div class="space-10"></div>
+                        <h3 id="amountWbtCoin"></h3>
+                        <div class="space-10"></div>
+                        <p><span id="wbtPrice" style="color: rgb(233, 218, 10); font-weight: bold;"></span> $</p>
+                    </div>
+                </div>
+            </div>
+            <div class="space-30"></div>
+            <div class="row">
+                <div class="depo-with">
+                    <div class="layer-depo text-center">
+                        <ul>
+                            <li class="active">BTC</li>
+                            <li>WBT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="detail-assets col-12">
+                    <div class="create-layout active">
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-12">
+                                <div class="space-50"></div>
+                                <div class="info-assets">
+                                    <h3>BTC</h3>
+                                    <div class="space-10"></div>
+                                    <div><strong>Assets Name:</strong> &nbsp;<span>Bitcoin</span></div>
+                                    <div class="space-10"></div>
+                                    <div><strong>Your Wallet Address:</strong> &nbsp;<span><%= walletBtc %></span></div>
+                                    <div class="space-10"></div>
+                                    <!-- <div><strong>Your Balance:</strong> &nbsp;<span> BTC</span> </div> -->
+                                    <div class="space-10"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <div class="space-50"></div>
+                                <div class="btn-depo-with col-12 text-center">
+                                    <div class="btn-depo-with col-12 text-center">
+                                      <button class="btn btn-success" data-currency="btc" data-toggle="modal" data-target="#modal-deposit-btc">Deposit</button>
+                                      <div class="space-10"></div>
+                                      <button class="btn btn-danger" data-toggle="modal" data-target="#modal-withdraw-btc">Withdraw</button>
+                                      <div class="space-10"></div>
+                                      <a href="/user/swap"><button class="btn btn-warning">Exchange</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="create-layout">
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-12">
+                              <div class="space-50"></div>
+                              <div class="info-assets">
+                                <h3>WBT</h3>
+                                <div class="space-10"></div>
+                                <div><strong>Assets Name:</strong> &nbsp;<span>WBank Token</span></div>
+                                <div class="space-10"></div>
+                                <div><strong>Your Wallet Address:</strong> &nbsp;<span><%= walletWbt %></div>
+                                <div class="space-10"></div>
+                                <!-- <div><strong>Your Balance:</strong> &nbsp;<span>WBT</span> </div> -->
+                                <div class="space-10"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <div class="space-50"></div>
+                                <div class="btn-depo-with col-12 text-center">
+                                    <button class="btn btn-success" data-currency="wbt" data-toggle="modal" data-target="#modal-deposit-wbt">Deposit</button>
+                                    <div class="space-10"></div>
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#modal-withdraw-wbt">Withdraw</button>
+                                    <div class="space-10"></div>
+                                    <a href="/user/swap"><button class="btn btn-warning">Exchange</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--welcome area end-->
+
+    <!-- modal deposit -->
+    <div class="modal fade" id="modal-deposit-btc" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalLabel">DEPOSIT</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <h3 style="color: black;">BTC</h3>
+              <img src="<%= btcAddressQr %>" >
+              <div class="space-10"></div>
+              <div style="color: black; width: 100%;"><strong><input id="textCopy2" style="width: 80%;" value="<%= walletBtc %>"> &nbsp;<button id="btnCopy2"  data-clipboard-target="#textCopy2">Copy</button><//strong></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal deposit -->
+    <div class="modal fade" id="modal-deposit-wbt" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalLabel">DEPOSIT</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <h3 style="color: black;">WBT</h3>
+              <img src="<%= wbtAddressQr %>" >
+              <div class="space-10"></div>
+              <div style="color: black; width: 100%;"><strong><input id="textCopy" style="width: 80%;" value="<%= walletWbt %>"> &nbsp;<button id="btnCopy"  data-clipboard-target="#textCopy">Copy</button><//strong></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal withdraw -->
+    <div class="modal fade modal-for-withdraw" id="modal-withdraw-btc" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalLabel">WITHDRAW</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="col-12 text-center" style="color: black;">
+                <h3 style="color: black;">BTC</h3>
+                <label class="col-2"for="withdrawAddress">Address: </label>
+                <input id="btc-address" class="withdrawAddress col-9 p-2" type="text" name="withdrawAddress" placeholder="Enter Address">
+                <div class="space-10"></div>
+                <label class="col-2" for="withdrawAmount">Amount: </label>
+                <input id="btc-amount" class="withdrawAmount col-9 p-2" type="number" min="0" name="withdrawAmount" placeholder="Enter Amount">
+                <div class="space-10"></div>
+                <input id="withdraw-btc" data-coin="btc" class="btn btn-outline-danger" type="button" value="Submit">
+                <div class="space-10"></div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal withdraw -->
+    <div class="modal fade modal-for-withdraw" id="modal-withdraw-wbt" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalLabel">WITHDRAW</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="col-12 text-center" style="color: black;">
+                <h3 style="color: black;">WBT</h3>
+
+                <label class="col-2"for="withdrawAddress">Address: </label>
+                <input id="wbt-address" class="withdrawAddress col-9 p-2" type="text" name="withdrawAddress" placeholder="Enter Address">
+                <div class="space-10"></div>
+
+                <label class="col-2" for="withdrawAmount">Amount: </label>
+                <input id="wbt-amount" class="withdrawAmount col-9 p-2" type="number" name="withdrawAmount" placeholder="Enter Amount">
+                <div class="space-10"></div>
+
+                <input id="withdraw-wbt" data-coin="wbt" class="btn btn-outline-danger" type="button" value="Submit">
+                <div class="space-10"></div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<%- include("./../layout/footer"); -%> 

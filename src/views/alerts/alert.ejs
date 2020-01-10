@@ -1,0 +1,14 @@
+<% if(errors != "") { %>
+<div class="alert alert-danger col-md-6 offset-md-3 col-sm-12" id ="closeAlert">
+    <% errors.forEach((item) => { %>
+        <div style="padding: 10px;text-align: left; font-weight: bold;">- <%- item %></div>
+    <% }); %>
+</div>
+<% } %>
+<% if(success != "") { %>   
+<div class="alert alert-success col-md-6 offset-md-3 col-sm-12" id="closeAlert">
+    <% success.forEach((item) => { %>
+        <div style="padding: 10px;text-align: left; font-weight: bold;">- <%- item %></div>
+    <% }); %>
+</div>  
+<% } %>
