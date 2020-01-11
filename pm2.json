@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "swap",
+            "script": "npm",
+            "args" : "start"
+        }
+    ]
+}
