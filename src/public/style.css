@@ -204,10 +204,16 @@ h6
 	text-transform: capitalize;
 }
 
+.h3 {}
+
 ul{
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+ul.group-more-social li a h3:hover {
+    color: #1dccd6;
 }
 
 li.account-unit {
@@ -1059,7 +1065,7 @@ distibution area css
 }
 
 .distibution-d li {
-  font-size: 40px;
+  font-size: 25px;
   color: #fff;
   font-weight: bold;
 }
