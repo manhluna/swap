@@ -44,7 +44,7 @@ const tranMail = {
     SUBJECT: "WBANK EXCHANGE: Authenticate Account",
     TEMPLATE: (linkVerify) => {
         return `
-        <div style=""width: 100%">
+        <div style=""width: 100%; text-align: center;">
             <img src="https://i.imgur.com/6PfRAgh.png" style="width:25%";>
             <h2>Thank you for your join in WBANK Global</h2>
             <h3>Please Click the link to complete the registation</h3>
