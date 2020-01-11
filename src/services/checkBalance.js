@@ -159,8 +159,8 @@ const _swap = (id,coin_1,amount_1,coin_2)=>{
             price(coin_1, price_1 =>{
                 price(coin_2, price_2 =>{
                     const rate = price_1/price_2
-                    const amount_2 = (amount_1 * rate).toFixed(3)
-                    const sw = new swaphistory(coin_1,coin_2,amount_1,rate.toFixed(3))
+                    const amount_2 = (amount_1 * rate).toFixed(5)
+                    const sw = new swaphistory(coin_1,coin_2,amount_1,rate.toFixed(5))
                     const up_member = O([`wallet.${coin_1}.balance`, `wallet.${coin_2}.balance`],[-amount_1, amount_2])
                     DB.Member.updateOne({id:id},{$inc: up_member, $push: {'wallet.history.swap':sw}},{new: true, safe: true, upsert: true},(err,doc)=>{
                         getUserID(id, user => event_handle(user))

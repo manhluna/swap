@@ -128,8 +128,8 @@ socket.on("post-price", (data)=>{
 
 
 socket.on("post-deposit", (data)=>{
-    jQuery("#amountBtcCoin").html(data.currentBtcBal);
-    jQuery("#amountWbtCoin").html(data.currentWbtBal);
-    jQuery("#balance-swap-btc").html(data.currentBtcBal);
-    jQuery("#balance-swap-wbt").html(data.currentWbtBal);
+    jQuery("#amountBtcCoin").html(Number(data.currentBtcBal).toFixed(4));
+    jQuery("#amountWbtCoin").html(Number(data.currentWbtBal).toFixed(2));
+    jQuery("#balance-swap-btc").html(Number(data.currentBtcBal).toFixed(4));
+    jQuery("#balance-swap-wbt").html(Number(data.currentWbtBal).toFixed(2));
 });
