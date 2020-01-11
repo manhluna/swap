@@ -6,7 +6,7 @@ let Schema = mongoose.Schema;
 let UserSchema = new Schema({
     username: String,
     phone: {
-        type: Number,
+        type: String,
         default: null
     },
     address: {

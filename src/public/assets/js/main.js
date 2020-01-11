@@ -123,7 +123,7 @@
      
     setTimeout(function() {
       $('#closeAlert').css('display', 'none');
-    }, 4000);
+    }, 7000);
       //welcome particles
 
       particlesJS('particles-js',

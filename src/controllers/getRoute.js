@@ -33,8 +33,7 @@ let getDashboard =  async (req, res) => {
         res.render("user/dashboard", {
             title: "WBank | Dashboard",
             user:req.user,
-            // amountBtc: doc.wallet.btc.balance,
-            // amountWbt: doc.wallet.wbt.balance,
+
             walletBtc: doc.wallet.btc.address,
             walletWbt: doc.wallet.wbt.address,
             btcAddressQr: btcAddressQr,
@@ -43,7 +42,6 @@ let getDashboard =  async (req, res) => {
 };
 let getUserProfile = async (req, res) => {
     let doc = await DB.Member.findOne({id: req.user.username});
-    console.log(doc.wallet.history.deposit);
     res.render("user/profile", {
         title: "WBank | Dashboard",
         user:req.user,
@@ -52,10 +50,13 @@ let getUserProfile = async (req, res) => {
         swap: doc.wallet.history.swap
     });
 };
-let getUserSwap = (req, res) => {
+let getUserSwap = async (req, res) => {
+    let docSwap = await DB.Member.findOne({id: req.user.username});
     res.render("user/swap", {
         title: "WBank | Dashboard",
-        user:req.user
+        user:req.user,
+        amountBtc: docSwap.wallet.btc.balance,
+        amountWbt: docSwap.wallet.wbt.balance
     });
 };
 

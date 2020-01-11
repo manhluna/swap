@@ -287,6 +287,9 @@ input.form-login {
     margin-top: 20px;
     border: solid 1px white;
     border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
 }
 
 a.gradient-btn:hover:after, 
@@ -1056,8 +1059,9 @@ distibution area css
 }
 
 .distibution-d li {
-  font-size: 18px;
+  font-size: 40px;
   color: #fff;
+  font-weight: bold;
 }
 
 .distibution-d li span {

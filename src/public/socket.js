@@ -1,5 +1,6 @@
 jQuery(document).on("click", "#btn-add-phone", function(){
     let phoneUpdate = jQuery("#add-phone-content").val();
+    console.log(phoneUpdate)
     jQuery.ajax({
         url: "/user/update-phone",
         type: "put",
@@ -46,11 +47,11 @@ jQuery(document).on("click", "#withdraw-btc", function(){
             address: address,
             amount: amount
         },
-        success: function(result){
-            socket.emit("post-withdraw", {
-                coin, address, amount
-            });
-        },
+        // success: function(result){
+        //     socket.emit("post-withdraw", {
+        //         coin, address, amount
+        //     });
+        // },
         error: function(error){
             console.log(error);
         }
@@ -68,11 +69,11 @@ jQuery(document).on("click", "#withdraw-wbt", function(){
             address: address,
             amount: amount
         },
-        success: function(result){
-            socket.emit("post-withdraw", {
-                coin, address, amount
-            });
-        },
+        // success: function(result){
+        //     socket.emit("post-withdraw", {
+        //         coin, address, amount
+        //     });
+        // },
         error: function(error){
             console.log(error);
         }
@@ -102,25 +103,23 @@ jQuery(document).on("click", "#swap-coin", function(){
 });
 
 socket.on("update-phone-success", (data)=>{
-    jQuery("#modal-modal-addPhone").hide();
     jQuery("#add-phone").css("dislay", "none");
-    jQuery("#phone-user").html(data.phoneUpdate);
+    jQuery("#phone-user").css("dislay", "block");
+    jQuery("#phone-user").html(data);
 });
 socket.on("update-address-success", (data)=>{
-    jQuery("#modal-modal-addAddress").hide();
     jQuery("#add-address").css("dislay", "none");
+    jQuery("#user-address").css("dislay", "block");
     jQuery("#user-address").html(data.address);
 });
 socket.on("post-swap-success", (data)=>{
-    jQuery("#modal-withdraw-btc").hide();
     jQuery("#amountBtcCoin").html(data.currentBtcBalance);
     jQuery("#amountWbtCoin").html(data.currentWbtBalance);
 });
-socket.on("post-withdraw-success", (data)=>{
-    jQuery("#modal-withdraw-btc").hide();
-    jQuery("#amountBtcCoin").html(data.currentBtcBalance);
-    jQuery("#amountWbtCoin").html(data.currentWbtBalance);
-});
+// socket.on("post-withdraw-success", (data)=>{
+//     jQuery("#amountBtcCoin").html(data.currentBtcBalance);
+//     jQuery("#amountWbtCoin").html(data.currentWbtBalance);
+// });
 socket.on("post-price", (data)=>{
     jQuery("#btcPrice").html(Number(data.btcprice).toFixed(2));
     jQuery("title#title-header-top").html(Number(data.btcprice).toFixed(2));
@@ -131,4 +130,6 @@ socket.on("post-price", (data)=>{
 socket.on("post-deposit", (data)=>{
     jQuery("#amountBtcCoin").html(data.currentBtcBal);
     jQuery("#amountWbtCoin").html(data.currentWbtBal);
+    jQuery("#balance-swap-btc").html(data.currentBtcBal);
+    jQuery("#balance-swap-wbt").html(data.currentWbtBal);
 });

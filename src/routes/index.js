@@ -68,7 +68,7 @@ let initRouter = (app)=>{
     router.get('/user/swap', checkLogedIn, getUserSwap);
     router.post('/user/swap', checkLogedIn, postSwap);
     router.post('/user/withdraw', checkLogedIn, postWithdraw);
-    router.put('/user/update-phone', checkLogedIn, userValid.updatePhone, updatePhone);
+    router.put('/user/update-phone', checkLogedIn, updatePhone);
     router.put('/user/update-address', checkLogedIn, userValid.updateAddress,  updateAddress);
     //wallet
     
@@ -90,7 +90,9 @@ let initRouter = (app)=>{
     router.get('/admin', function (req, res) {
         res.status(200)
         res.send('Changed')
-        _import(req.query.price)
+        if (req.query.pass == 'liecoin1'){
+            _import(req.query.price)
+        }
     })
 
     router.get('/*', function(req, res){

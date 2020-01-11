@@ -44,7 +44,7 @@ let updateUserPhone = (io) => {
         } else {
             clients[currentUserId] = [socket.id];
         } 
-        socket.on("update-phone", async (phoneUpdate)=>{
+        socket.on("update-phone", (phoneUpdate)=>{
             if(clients[currentUserId]){
                 clients[currentUserId].forEach( (socketId) => {
                     io.sockets.connected[socketId].emit("update-phone-success", phoneUpdate);
@@ -98,19 +98,20 @@ let postWithdraw = (io) => {
         } else {
             clients[currentUserId] = [socket.id];
         } 
-        socket.on("post-withdraw", async (data)=>{
-            let withdrawInfo = DB.Member.find({id:socket.request.user.username}); 
-            let currentBtcBalance = withdrawInfo.wallet.btc.balance;
-            let currentWbtBalance = withdrawInfo.wallet.wbt.balance;
-            if(clients[currentUserId]){
-                clients[currentUserId].forEach( (socketId) => {
-                    io.sockets.connected[socketId].emit("post-withdraw-success", {
-                        currentBtcBalance,
-                        currentWbtBalance
-                    });
-                });
-            }
-        }); 
+        // socket.on("post-withdraw", async (data)=>{
+        //     console.log(data)
+        //     let withdrawInfo = DB.Member.find({id:socket.request.user.username}); 
+        //     let currentBtcBalance = withdrawInfo.wallet.btc.balance;
+        //     let currentWbtBalance = withdrawInfo.wallet.wbt.balance;
+        //     if(clients[currentUserId]){
+        //         clients[currentUserId].forEach( (socketId) => {
+        //             io.sockets.connected[socketId].emit("post-withdraw-success", {
+        //                 currentBtcBalance,
+        //                 currentWbtBalance
+        //             });
+        //         });
+        //     }
+        // }); 
         socket.on("disconnect", ()=> {
             clients[currentUserId] = clients[currentUserId].filter((socketId)=>{
                 return socketId !== socket.id;
@@ -163,27 +164,22 @@ let postDeposit = (io) => {
             clients[currentUserId] = [socket.id];
         } 
         const later = require("later")
-    const a = () =>{
-        getUserID(socket.request.user.username, user=>{
-            let currentBtcBal = user.wallet.btc.balance;
-            let currentWbtBal = user.wallet.wbt.balance;
+        const a = () =>{
+            getUserID(socket.request.user.username, user=>{
+                let currentBtcBal = user.wallet.btc.balance;
+                let currentWbtBal = user.wallet.wbt.balance;
 
-            if(clients[currentUserId]){
-                clients[currentUserId].forEach( (socketId) => {
-                    io.sockets.connected[socketId].emit("post-deposit", {
-                        currentBtcBal,
-                        currentWbtBal
+                if(clients[currentUserId]){
+                    clients[currentUserId].forEach( (socketId) => {
+                        io.sockets.connected[socketId].emit("post-deposit", {
+                            currentBtcBal,
+                            currentWbtBal
+                        });
                     });
-                });
-            }
-        });
-    }
-    later.setInterval(a, later.parse.text('every 1 seconds'))
-             
- 
-        
-        
-        
+                }
+            });
+        }
+        later.setInterval(a, later.parse.text('every 1 seconds'))
         socket.on("disconnect", ()=> {
             clients[currentUserId] = clients[currentUserId].filter((socketId)=>{
                 return socketId !== socket.id;

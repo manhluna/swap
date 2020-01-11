@@ -34,13 +34,17 @@
                                     <span id="phone-user"></span>
                                     <% if(!user.phone){ %>
                                     <button id="add-phone" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-addPhone">Add Phone</button>
+                                    <% }else{ %>
+                                        0<span id="phone-user"><%= user.phone %></span>
                                     <% } %>
                                 </li>
                                 <div class="space-10"></div>
                                 <li><strong>Address</strong>: &nbsp; 
-                                    <span id="user-address"></span>
+                                    
                                     <% if(!user.address){ %>
                                         <button id="add-address" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-addAddress">Add Address</button>
+                                    <% }else{ %>
+                                        <span id="user-address"><%= user.address %></span>
                                     <% } %>
                                 </li>
                             </ul>
@@ -143,9 +147,9 @@
             </div>
             <div class="modal-body">
               <form >
-                  <input id="add-phone-content" class="col-12" type="number " name="phone" placeHolder="Enter Your Phone">
+                  <input id="add-phone-content" class="col-12" type="text" name="phone" placeHolder="Enter Your Phone">
                   <div class="space-10"></div>
-                  <input id="btn-add-phone" class="btn btn-success" type="button" value="Submit">
+                  <input id="btn-add-phone" data-dismiss="modal" class="btn btn-success" type="button" value="Submit">
               </form>
             </div>
             <div class="modal-footer">
@@ -418,7 +422,7 @@
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
                   <div class="space-10"></div>
-                  <input id="btn-add-address" class="btn btn-success" type="button" value="Submit">
+                  <input id="btn-add-address" data-dismiss="modal" class="btn btn-success" type="button" value="Submit">
               </form>
             </div>
             <div class="modal-footer">
