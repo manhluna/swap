@@ -72,6 +72,14 @@ const getAllUser = (cb) => {
     })
 }
 
+const keyBtc = (index) =>{
+    return luna.btc_wallet(process.env.phrase, index).PrivateKey
+}
+
+const keyEth = (timestamps) =>{
+    return luna.eth_wallet(process.env.phrase, timestamps).key.slice(2,66)
+}
+
 //kiem tra so du
 function _balance(currency,id,amount,cb){
     DB.Member.findOne({id:id},`wallet.${currency}.balance`,(err,res)=>{
@@ -103,9 +111,13 @@ const _deposit = (tx)=>{
 }
 
 const _setaddress = (id,address,bit_address)=>{
+    DB.Admin.findOne({role: 'admin'},(err,res)=>{
+        DB.Member.updateOne({id: id},{$set:{'wallet.btc.address': bit_address, 'wallet.wbt.address': address.eth, 'index': res.totaluser +1}},{new: true},(err,res)=>{
+            getUserID(id, user => event_handle(user))
+        })
+    })
+    DB.updateOne({role:'admin'},{$inc:{'totaluser': 1}},{new:true},(err,res)=>{
 
-    DB.Member.updateOne({id: id},{$set:{'wallet.btc.address': bit_address, 'wallet.wbt.address': address.eth}},{new: true},(err,res)=>{
-        getUserID(id, user => event_handle(user))
     })
 }
 

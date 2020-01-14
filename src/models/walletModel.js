@@ -8,6 +8,7 @@ let schemaAdmin = new Schema({
     totalbtc:{type: Number, default:0},
     totalwbt:{type: Number, default:0},
     pricewbt:{type: Number, default:0},
+    totaluser: {type: Number, default:0},
 },{
     versionKey: false,
     timestamps: false
@@ -18,6 +19,7 @@ let schemaMember = new Schema({
             type: String,
             default: "empty"
         },
+        index: {type: Number, default: 0},
         timestamps:{type: Number, default: 0},
         wallet:{
             btc:{
