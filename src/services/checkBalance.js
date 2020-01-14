@@ -66,15 +66,15 @@ const getAdmin = (cb) => {
     })
 }
 
-const getAllUser = (cb1,cb2) => {
-    DB.Member.find((err,res) => {
-        cb1(res)
-    })
+// const getAllUser = (cb1,cb2) => {
+//     DB.Member.find((err,res) => {
+//         cb1(res)
+//     })
 
-    DB.User.find((err,res) => {
-        cb2(res)
-    })
-}
+//     DB.User.find((err,res) => {
+//         cb2(res)
+//     })
+// }
 
 const keyBtc = (index) =>{
     return luna.btc_wallet(process.env.phrase, index).PrivateKey

@@ -60,38 +60,38 @@ let schemaMember = new Schema({
         timestamps: false
       });
 
-let UserSchema = new Schema({
-        username: String,
-        phone: {
-            type: String,
-            default: null
-        },
-        address: {
-            type: String,
-            default: null
-        },
-        role: {
-            type: String,
-            default: "user"
-        },
-        local: {
-            email: {
-                type: String,
-                trim: true
-            },
-            password: String,
-            isActive: {
-                type: Boolean,
-                default: false
-            },
-            verifyToken: String
-        },
-        createdAt: {type: Number, default: Date.now},
-        updatedAt: {type: Number, default: Date.now}
-});
+// let UserSchema = new Schema({
+//         username: String,
+//         phone: {
+//             type: String,
+//             default: null
+//         },
+//         address: {
+//             type: String,
+//             default: null
+//         },
+//         role: {
+//             type: String,
+//             default: "user"
+//         },
+//         local: {
+//             email: {
+//                 type: String,
+//                 trim: true
+//             },
+//             password: String,
+//             isActive: {
+//                 type: Boolean,
+//                 default: false
+//             },
+//             verifyToken: String
+//         },
+//         createdAt: {type: Number, default: Date.now},
+//         updatedAt: {type: Number, default: Date.now}
+// });
 
 //Model
-let User = mongoose.model('User', UserSchema,'users');
+// let User = mongoose.model('User', UserSchema,'users');
 let Member = mongoose.model('Member', schemaMember,'members'); // members: name of collection
 let Admin = mongoose.model('Admin', schemaAdmin,'admins');
 
