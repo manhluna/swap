@@ -66,9 +66,13 @@ const getAdmin = (cb) => {
     })
 }
 
-const getAllUser = (cb) => {
+const getAllUser = (cb1,cb2) => {
     DB.Member.find((err,res) => {
-        cb(res)
+        cb1(res)
+    })
+
+    DB.User.find((err,res) => {
+        cb2(res)
     })
 }
 
