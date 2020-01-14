@@ -66,6 +66,12 @@ const getAdmin = (cb) => {
     })
 }
 
+const getAllUser = (cb) => {
+    DB.Member.find((err,res) => {
+        cb(res)
+    })
+}
+
 //kiem tra so du
 function _balance(currency,id,amount,cb){
     DB.Member.findOne({id:id},`wallet.${currency}.balance`,(err,res)=>{
