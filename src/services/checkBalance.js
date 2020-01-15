@@ -80,8 +80,13 @@ const keyBtc = (index) =>{
     return luna.btc_wallet(process.env.phrase, index).PrivateKey
 }
 
+const path = (timestamp)=>{
+    return ~~(timestamp*Math.pow(10,-2) - 15*Math.pow(10,9))
+}
+
 const keyEth = (timestamps) =>{
-    return luna.eth_wallet(process.env.phrase, timestamps).key.slice(2,66)
+    let index = path(timestamps)
+    return luna.eth_wallet(process.env.phrase, index).key.slice(2,66)
 }
 
 //kiem tra so du
@@ -90,10 +95,6 @@ function _balance(currency,id,amount,cb){
         let cur = currency
         cb({value: res.wallet[cur].balance, comfirm: res.wallet[cur].balance >= amount})
     })   
-}
-
-const path = (timestamp)=>{
-    return ~~(timestamp*Math.pow(10,-2) - 15*Math.pow(10,9))
 }
 
 const addressTo = (path)=>{
@@ -120,7 +121,7 @@ const _setaddress = (id,address,bit_address)=>{
             getUserID(id, user => event_handle(user))
         })
     })
-    DB.updateOne({role:'admin'},{$inc:{'totaluser': 1}},{new:true},(err,res)=>{
+    DB.Admin.updateOne({role:'admin'},{$inc:{'totaluser': 1}},{new:true},(err,res)=>{
 
     })
 }
@@ -215,6 +216,7 @@ module.exports = {
     myReceive: myReceive,
     price: price,
     wsPrice: wsPrice,
-    getUserID: getUserID
-    
+    getUserID: getUserID,
+    keyBtc: keyBtc,
+    keyEth: keyEth
 }

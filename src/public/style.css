@@ -204,7 +204,7 @@ h6
 	text-transform: capitalize;
 }
 
-.h3 {}
+/* .h3 {} */
 
 ul{
   margin: 0;
@@ -463,7 +463,7 @@ h4#modalLabel {
   height: 161%;
   content: "";
   background: url(assets/img/Group1.png) no-repeat;
-  background: ;
+  /* background: ; */
   top: -62%;
   left: -29%;
   z-index: -1;
@@ -1636,7 +1636,7 @@ blog page css
   z-index: -1;
 }
 .single-blog-image {
-  background: ;
+  /* background: ; */
   background-position: center !important;
   background-size: cover !important;
   height: 300px;
@@ -1734,7 +1734,7 @@ a.single-blog-top:hover {
   display: block;
   color: #676767;
   background: #f8f8f8;
-  font-size: ;
+  /* font-size: ; */
   text-transform: capitalize;
   height: 40px;
   width: 91px;

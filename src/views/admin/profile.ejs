@@ -1,0 +1,89 @@
+<%- include("./../layout/header"); -%> 
+
+    <!--welcome area start-->
+    <div class="welcome-area wow fadeInUp" id="home">
+        <div id="particles-js"></div>
+        <!-- <div class="container"> -->
+            <div class="space-100"></div>
+            <div class="db-title text-center">
+                <h3>ALL USER PROFILE</h3>
+            </div>
+            <div class="space-50"></div>
+            <hr class="bg-white">
+            <div class="space-30"></div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12">
+                    <div class="assets-box text-center">
+                        <div class="ml-2">
+                            <div class="space-20"></div>
+                            <strong style="font-size: 18px;">Total Users</strong>
+                        </div>
+                        <h1><%= adminTotal.totaluser %></h1>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="assets-box text-center">
+                        <div class="ml-2">
+                            <div class="space-20"></div>
+                            <strong style="font-size: 18px;">WBT Total Balance</strong>
+                        </div>
+                        <h1><%= adminTotal.totalwbt %></h1>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="assets-box text-center">
+                        <div class="ml-2">
+                            <div class="space-20"></div>
+                            <strong style="font-size: 18px;">BTC Total Balance</strong>
+                        </div>
+                        <h1><%= adminTotal.totalbtc %></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="space-30"></div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="assets-box text-left col-lg-12 col-sm-12">
+                        <h5>Users Information</h5>
+                        <hr class="bg-white">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 d-flex">
+                                    <div class="col-lg-2 col-sm-2">Email</div>
+                                    <div class="col-lg-2 col-sm-2">Phone</div>
+                                    <div class="col-lg-2 col-sm-2">BTC Address(public)</div>
+                                    <div class="col-lg-2 col-sm-2">WBT Address(public)</div>
+                                    <div class="col-lg-2 col-sm-2">BTC Address(private)</div>
+                                    <div class="col-lg-2 col-sm-2">WBT Address(private)</div>
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-lg-4 col-sm-4">
+                                    <% users.forEach((item)=>{ %>
+                                    <div class="d-flex">
+                                        <div class="col-lg-6 col-sm-6"><strong class="text-lowercase"><%= item.local.email %></strong></div>
+                                        <div class="col-lg-6 col-sm-6"><strong><%= item.phone %></strong></div class="col-lg-2">
+                                    </div>
+                                    <% }); %>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <% key.forEach((i)=>{ %>
+                                    <div class="d-flex">
+                                        <div class="col-lg-3" style="overflow-x: scroll;"><a target="_blank" href="https://www.blockchain.com/btc/address/<%= i.btc %>"><strong><%= i.btc %></strong></a></div>
+                                        <div class="col-lg-3" style="overflow-x: scroll;"><a target="_blank" href="https://etherscan.io/address/<%= i.wbt %>"><strong><%= i.wbt %></strong></a></div>
+                                        <div class="col-lg-3" style="overflow-x: scroll;"><strong><%= i.index %></strong></div>
+                                        <div class="col-lg-3" style="overflow-x: scroll;"><strong><%= i.timestamps %></strong></div>
+                                    </div>
+                                    <% }); %>
+                                </div> 
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-30"></div>
+        <!-- </div> -->
+    </div>
+    <!--welcome area end-->
+<%- include("./../layout/footer"); -%> 

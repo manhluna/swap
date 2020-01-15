@@ -17,14 +17,25 @@ import {
     postSwap,
     postWithdraw,
     updateAddress,
-    updatePhone
+    updatePhone,
+    getRecoverPassword,
+    RecoverPassword,
+    verifyAccountForgetPassword,
+    updateNewPassword,
+    getUpdatePassword,
+    getSendMailPassword,
+    getAddPrice,
+    postAddPrice,
+    getProfileAdmin,
+    getDepositAdmin,
+    getWithdrawAdmin,
+    getSwapAdmin,
+    checkAdmin
 } from "./../controllers/getRoute";
 import { authValid, userValid } from "./../validation/index";
 import passport from "passport";
 import { initPassportLocal } from "./../controllers/passport/local";
 import  {
-    price,
-    wsPrice,
     _deposit,
     _setaddress,
     _withdraw,
@@ -61,6 +72,15 @@ let initRouter = (app)=>{
 
     //post routes
     router.post('/posts', checkLogedIn, userValid.postComment, postComment);
+    // admin
+    router.get('/admin/add-price', checkLogedIn, checkAdmin, getAddPrice);
+    router.post('/admin/add-price', checkLogedIn, checkAdmin, postAddPrice);
+    
+    router.get('/admin/profile', checkLogedIn, checkAdmin, getProfileAdmin);
+    router.get('/admin/deposit-history', checkLogedIn, checkAdmin, getDepositAdmin);
+    router.get('/admin/withdraw-history', checkLogedIn, getWithdrawAdmin);
+    router.get('/admin/swap-history', checkLogedIn, checkAdmin, getSwapAdmin);
+
 
     //dashboard
     router.get('/user/dashboard', checkLogedIn, getDashboard);
@@ -70,6 +90,13 @@ let initRouter = (app)=>{
     router.post('/user/withdraw', checkLogedIn, postWithdraw);
     router.put('/user/update-phone', checkLogedIn, updatePhone);
     router.put('/user/update-address', checkLogedIn, userValid.updateAddress,  updateAddress);
+
+    router.get('/user/recover-password', checkLogedOut,  getRecoverPassword);
+    router.get('/user/send-mail-password', checkLogedOut,  getSendMailPassword);
+    router.post('/user/recover-password', checkLogedOut, userValid.postEmailRecover,  RecoverPassword);
+    router.get('/user/new-password', checkLogedOut,  getUpdatePassword);
+    router.get('/user/:tokenRecoverPassword', checkLogedOut,  verifyAccountForgetPassword);
+    router.post('/user/update-password', checkLogedOut, userValid.checkNewPassword,  updateNewPassword);
     //wallet
     
     router.get('/btc', function (req, res) {
@@ -87,13 +114,11 @@ let initRouter = (app)=>{
     })
 
     
-    router.get('/admin', function (req, res) {
-        res.status(200)
-        res.send('Changed')
-        if (req.query.pass == 'liecoin1'){
-            _import(req.query.price)
-        }
-    })
+    // router.get('/admin', function (req, res) {
+    //     res.status(200)
+    //     res.send('Changed')
+    //     _import(req.query.price)
+    // })
 
     router.get('/*', function(req, res){
         res.redirect("/");

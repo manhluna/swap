@@ -99,7 +99,6 @@ let postWithdraw = (io) => {
             clients[currentUserId] = [socket.id];
         } 
         // socket.on("post-withdraw", async (data)=>{
-        //     console.log(data)
         //     let withdrawInfo = DB.Member.find({id:socket.request.user.username}); 
         //     let currentBtcBalance = withdrawInfo.wallet.btc.balance;
         //     let currentWbtBalance = withdrawInfo.wallet.wbt.balance;

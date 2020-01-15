@@ -16,9 +16,23 @@ let postComment = [
     .not()
     .isEmpty()
 ];
+let postEmailRecover = [
+    check("email", tranValidation.EMAIL_INCORRECT)
+        .isEmail()
+        .trim()
+];
+let checkNewPassword = [
+    check("new_password", tranValidation.PASSWORD_INCORRECT)
+        .isLength({ min: 8})
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}$/),
+    check("new_re_password", tranValidation.PASSWORD_CONFIRM_INCORRECT)
+        .custom((value, {req})=> value === req.body.new_password)
+];
 
 module.exports = {
     updatePhone: updatePhone,
     updateAddress: updateAddress,
-    postComment: postComment
+    postComment: postComment,
+    postEmailRecover: postEmailRecover,
+    checkNewPassword: checkNewPassword
 };

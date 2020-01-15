@@ -66,6 +66,19 @@
                     <a href="/login" class="logibtn gradient-btn">Login</a>
                     <a href="/register" class="logibtn gradient-btn">Register</a>
                 </div>
+                <% } else if(user.role == "admin") { %>
+                    <div id="lg-re" class="col-4 col-lg-2 text-right">
+                        <a href="#" class="logibtn gradient-btn""><i class="fa fa-user-circle"></i>&nbsp;Account</a>
+                        <ul class="account-show">
+                            <a href="/admin/add-price"><li class="account-unit">Add Price</li></a>
+                            <a href="/admin/profile"><li class="account-unit">User Profile</li></a>
+                            <a href="/admin/deposit-history"><li class="account-unit">Deposit History</li></a>
+                            <a href="/admin/withdraw-history"><li class="account-unit">Withdraw History</li></a>
+                            <a href="/admin/swap-history"><li class="account-unit">Swap History</li></a>
+                            <a href="/logout"><li class="account-unit">Logout</li></a>
+                        </ul>
+                    </div>
+                    
                 <% } else { %>
                     <div id="lg-re" class="col-4 col-lg-2 text-right">
                         <a href="#" class="logibtn gradient-btn""><i class="fa fa-user-circle"></i>&nbsp;Account</a>
@@ -76,7 +89,6 @@
                             <a href="/logout"><li class="account-unit">Logout</li></a>
                         </ul>
                     </div>
-                    
                 <% } %>
                 
             </div>

@@ -1,11 +1,92 @@
 import {register, verifyAccount} from "./register";
-import { postUserComment, updatePhoneNow, updateAddressNow } from "./userUpdate";
+import { 
+    postUserComment, 
+    updatePhoneNow, 
+    updateAddressNow, 
+    verifyAccountForgetPassword,
+    RecoverPassword ,
+    updateNewPassword,
+    postAddPrice
+} from "./userUpdate";
 import CommentModel from "./../models/commentModel";
+import UserModel from "./../models/userModel";
 import DB from "./../models/walletModel";
+import { keyBtc, keyEth} from "./../services/checkBalance";
 import { postSwap, postWithdraw } from "./userBalance";
 let getHome = (req, res)=>{
     res.render("index", {
         title: "WBank | Home",
+        user: req.user
+    });
+};
+let getAddPrice = (req, res)=>{
+    res.render("admin/add-price", {
+        title: "WBank | Add Price",
+        user: req.user
+    });
+};
+let getProfileAdmin = async (req, res)=>{
+    let adminTotal = await DB.Admin.findOne({"role": "admin"});
+    let doc = await DB.Member.find({});
+    let key =[]
+
+    for (let i=0; i<doc.length; i++) {
+        let s = {}
+        s.btc = doc[i].wallet.btc.address
+        s.wbt = doc[i].wallet.wbt.address
+        s.index = keyBtc(doc[i].index)
+        s.timestamps = keyEth(doc[i].timestamps)
+        key.push(s)
+    }
+    
+    let users = await UserModel.find({}).select("-password");
+    res.render("admin/profile", {
+        title: "WBank | All User Profile",
+        user: req.user,
+        users: users,
+        key: key,
+        adminTotal: adminTotal
+    });
+};
+let getDepositAdmin = async (req, res)=>{
+    let docDe = await DB.Member.find({});
+    res.render("admin/deposit-history", {
+        title: "WBank | All User Profile",
+        user: req.user,
+        deposit: docDe
+    });
+};
+let getWithdrawAdmin = async (req, res)=>{
+    let docWith = await DB.Member.find({});
+    res.render("admin/withdraw-history", {
+        title: "WBank | All User Profile",
+        user: req.user,
+        withdraw: docWith
+    });
+};
+let getSwapAdmin = async (req, res)=>{
+    let docSwap = await DB.Member.find({}, "wallet.history.swap").exec();
+    res.render("admin/swap-history", {
+        title: "WBank | All User Profile",
+        user: req.user,
+        swap: docSwap
+    });
+};
+let getRecoverPassword = (req, res)=>{
+    res.render("authentication/recover-password", {
+        title: "WBank | Recove password",
+        user: req.user
+    });
+};
+let getSendMailPassword = (req, res)=>{
+    res.render("authentication/send-mail", {
+        title: "WBank | Email Recover Password",
+        user: req.user
+    });
+};
+let getUpdatePassword = (req, res)=>{
+    res.render("authentication/new-password", {
+        title: "WBank | Update New Password",
         user: req.user
     });
 };
@@ -95,6 +176,13 @@ let checkLogedOut = (req, res, next) => {
     };
     next();
 };
+let checkAdmin = (req, res, next) => {
+    let isAdmin = req.user.role;
+    if(isAdmin != "admin"){
+        return res.redirect("/");
+    }
+    next();
+}
 
 module.exports = {
     getHome: getHome,
@@ -114,5 +202,18 @@ module.exports = {
     getDashboard: getDashboard,
     postWithdraw: postWithdraw,
     updatePhone: updatePhoneNow,
-    updateAddress: updateAddressNow
+    updateAddress: updateAddressNow,
+    getRecoverPassword: getRecoverPassword,
+    RecoverPassword: RecoverPassword,
+    verifyAccountForgetPassword: verifyAccountForgetPassword,
+    updateNewPassword: updateNewPassword,
+    getUpdatePassword: getUpdatePassword,
+    getSendMailPassword: getSendMailPassword,
+    getAddPrice: getAddPrice,
+    postAddPrice: postAddPrice,
+    getProfileAdmin: getProfileAdmin,
+    getDepositAdmin: getDepositAdmin,
+    getWithdrawAdmin: getWithdrawAdmin,
+    getSwapAdmin: getSwapAdmin,
+    checkAdmin: checkAdmin
 };

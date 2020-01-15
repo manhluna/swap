@@ -6,7 +6,7 @@ let Schema = mongoose.Schema;
 let UserSchema = new Schema({
     username: String,
     phone: {
-        type: String,
+        type: Number,
         default: null
     },
     address: {
@@ -27,7 +27,11 @@ let UserSchema = new Schema({
             type: Boolean,
             default: false
         },
-        verifyToken: String
+        verifyToken: String,
+        tokenRecoverPassword: {
+            type: String,
+            default: null
+        }
     },
     createdAt: {type: Number, default: Date.now},
     updatedAt: {type: Number, default: Date.now}
@@ -52,10 +56,24 @@ UserSchema.statics = {
     findByToken(token){
         return this.findOne({"local.verifyToken": token}).exec();
     },
+    findByTokenRecoverPassword(token){
+        return this.findOne({"local.tokenRecoverPassword": token}).exec();
+    },
     verifyUser(token){
         return this.findOneAndUpdate(
             {"local.verifyToken": token},
             {"local.isActive": true, "local.verifyToken": null}
+        ).exec();
+    }, 
+    createTokenForgetPassword(email, token){
+        return this.findOneAndUpdate(
+            {"local.email": email},
+            {"local.tokenRecoverPassword": token}
+        ).exec();
+    }, 
+    verifyUserForgetPassword(token){
+        return this.findOneAndUpdate(
+            {"local.tokenForgetPassword": token}
         ).exec();
     },  
     updatePhone  (id, item){
@@ -63,6 +81,12 @@ UserSchema.statics = {
     },
     updateAddress  (id, item){
         return this.findByIdAndUpdate(id, {"address": item}).exec();
+    },
+    updatePassword  (token, item){
+        return this.findOneAndUpdate(
+            {"local.tokenRecoverPassword": token},
+            {"local.password": item, "local.tokenRecoverPassword": null}
+        ).exec();
     },
     findAll(){
         return this.find({},'_id local.email phone address balance').exec();

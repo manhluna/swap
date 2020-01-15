@@ -18,7 +18,6 @@ let register = async (req, res)=>{
 
     try {
         let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.protocol, req.get("host"));
-        console.log(req.get("host"));
         successArr.push(userCreateSuccess);
         req.flash("success", successArr);
         return res.redirect("/register");

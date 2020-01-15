@@ -1,6 +1,5 @@
 jQuery(document).on("click", "#btn-add-phone", function(){
     let phoneUpdate = jQuery("#add-phone-content").val();
-    console.log(phoneUpdate)
     jQuery.ajax({
         url: "/user/update-phone",
         type: "put",
@@ -125,6 +124,7 @@ socket.on("post-price", (data)=>{
     jQuery("title#title-header-top").html(Number(data.btcprice).toFixed(2));
     jQuery("#wbtPrice").html(data.wbtprice);
 });
+
 
 
 socket.on("post-deposit", (data)=>{

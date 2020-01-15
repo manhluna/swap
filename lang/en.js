@@ -27,6 +27,9 @@ const tranSuccess = {
     register_success: (userEmail) => { 
         return `Email <strong>${userEmail}</strong> register successly, Please check your email to active account`;
     },
+    send_email_password_success: (userEmail) => { 
+        return `We have been send to <strong>${userEmail}</strong> reset password link, Please check your email to complete process`;
+    },
     ACCOUNT_ACTIVE: "Active Account Success",
     LOGIN_SUCCESS: () => {
         return "Sign In Success";
@@ -37,7 +40,8 @@ const tranSuccess = {
     WALLET_UPDATE_SUCCESS: "Update Wallet Success",
     AGENCY_SUCCESS_AWAIT: "Register Success, please wait reply from ASTRA support",
     POST_COMMENT_SUCCESS: "post comment success, thank you so much",
-    SWAP_SUCCESS: "exchange success"
+    SWAP_SUCCESS: "exchange success",
+    SEND_EMAIL_PASS_SUCCESS: "send mail success"
 }; 
 
 const tranMail = {
@@ -55,11 +59,26 @@ const tranMail = {
     },
     SEND_FAILED: "Send Email process Error, please Contact Support"
 };
+const tranRecoverPassword = {
+    SUBJECT: "WBANK EXCHANGE: Update Password",
+    TEMPLATE: (linkRecoverPassword) => {
+        return `
+        <div style=""width: 100%; text-align: center;">
+            <h2>Verify account succsess</h2>
+            <h3>Please Click the link to update your account</h3>
+            <br>
+            <a href="${linkRecoverPassword}" target="_blank" style="text-decoration: none;"><button style="background: blue; padding: 5px; border:none; border-radius: 10px;">Complete Register</button></a>
+        </div>
+        `;
+    },
+    SEND_FAILED: "Send Email process Error, please Contact Support"
+};
 
 module.exports = {
     tranMail,
     tranSuccess,
     tranValidation,
-    tranErrors
+    tranErrors,
+    tranRecoverPassword
 };
 
