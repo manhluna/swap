@@ -26,6 +26,8 @@
     "express-ejs-extend": "0.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
     "later": "^1.2.0",
     "lunawallet": "^1.8.0",
     "mongoose": "^5.7.1",

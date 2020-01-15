@@ -12,10 +12,20 @@ import socketio from "socket.io";
 import initSockets from "./sockets/index";
 import passportSocketIo from "passport.socketio";
 import cookieParser from "cookie-parser";
+const https = require('https');
+const fs = require('fs');
 //init app
+
+var sslOptions = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+  };
+
 let app = express();
 // init server with socket.io
 let server = http.createServer(app);
+https.createServer(sslOptions, app).listen(443)
+
 let io = socketio(server);
 //config database
 connectDB();
