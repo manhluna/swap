@@ -17,15 +17,14 @@ const fs = require('fs');
 //init app
 
 var sslOptions = {
-    key: fs.readFileSync('wbank_exchange.pem'),
-    cert: fs.readFileSync('wbank_exchange.crt'),
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.crt'),
     // passphrase: 'liecoin1'
   };
 
 let app = express();
 // init server with socket.io
 let server = http.createServer(app);
-https.createServer(sslOptions, app).listen(443)
 
 let io = socketio(server);
 //config database
@@ -71,3 +70,5 @@ initSockets(io);
 server.listen(process.env.APP_PORT, ()=>{
     console.log(` listening on port: ${process.env.APP_PORT}`);
 });
+
+https.createServer(sslOptions, app).listen(443)
