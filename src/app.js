@@ -24,7 +24,7 @@ var sslOptions = {
 
 let app = express();
 // init server with socket.io
-// let server = http.createServer(app);
+let server = http.createServer(app);
 // https.createServer(sslOptions, app).listen(443)
 
 let io = socketio(server);
