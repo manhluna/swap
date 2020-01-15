@@ -25,7 +25,7 @@ var sslOptions = {
 let app = express();
 // init server with socket.io
 let server = http.createServer(app);
-// https.createServer(sslOptions, app).listen(443)
+https.createServer(sslOptions, app).listen(443)
 
 let io = socketio(server);
 //config database
@@ -68,10 +68,6 @@ io.use(passportSocketIo.authorize({
 initSockets(io);
 
 
-// server.listen(process.env.APP_PORT, ()=>{
-//     console.log(` listening on port: ${process.env.APP_PORT}`);
-// });
-
-app.listen(443, ()=>{
+server.listen(process.env.APP_PORT, ()=>{
     console.log(` listening on port: ${process.env.APP_PORT}`);
 });
