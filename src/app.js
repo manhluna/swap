@@ -17,9 +17,9 @@ const fs = require('fs');
 //init app
 
 var sslOptions = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem'),
-    passphrase: 'liecoin1'
+    key: fs.readFileSync('wbank_exchange.pem'),
+    cert: fs.readFileSync('wbank_exchange.crt'),
+    // passphrase: 'liecoin1'
   };
 
 let app = express();
