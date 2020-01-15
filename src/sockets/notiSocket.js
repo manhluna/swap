@@ -165,16 +165,18 @@ let postDeposit = (io) => {
         const later = require("later")
         const a = () =>{
             getUserID(socket.request.user.username, user=>{
-                let currentBtcBal = user.wallet.btc.balance;
-                let currentWbtBal = user.wallet.wbt.balance;
-
-                if(clients[currentUserId]){
-                    clients[currentUserId].forEach( (socketId) => {
-                        io.sockets.connected[socketId].emit("post-deposit", {
-                            currentBtcBal,
-                            currentWbtBal
+                if (socket.request.user.username !== "wbtadmin"){
+                    let currentBtcBal = user.wallet.btc.balance;
+                    let currentWbtBal = user.wallet.wbt.balance;
+    
+                    if(clients[currentUserId]){
+                        clients[currentUserId].forEach( (socketId) => {
+                            io.sockets.connected[socketId].emit("post-deposit", {
+                                currentBtcBal,
+                                currentWbtBal
+                            });
                         });
-                    });
+                    }
                 }
             });
         }
