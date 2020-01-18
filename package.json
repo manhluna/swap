@@ -7,7 +7,7 @@
     "set": "npm install --save-dev --save",
     "fix": "cp fix/app.js node_modules/lunawallet/src && cp fix/index.js node_modules/bitcore-explorers/node_modules/bitcore-lib",
     "migrate": "npm run fix && echo \"db.dropDatabase()\" | mongo swap && node src/services/migrate.js",
-    "start": "babel-node src/app.js"
+    "start": "node src/services/reload.js && babel-node src/app.js"
   },
   "keywords": [],
   "author": "",
