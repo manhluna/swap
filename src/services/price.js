@@ -26,7 +26,7 @@ const wsPrice = (cb)=>{
   // });
   setInterval(()=>{
     price('btc', x => cb(x))
-  },16000)
+  },10000)
 }
 
 

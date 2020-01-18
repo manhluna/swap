@@ -20,7 +20,7 @@ module.exports = () => {
                         coin: 'wbt',
                         hash: txs.transactionHash,
                         value: txs.args.value/Math.pow(10,18),
-                        address: _address.eth
+                        address: res[i].wallet.wbt.address
                     }
                     wallet._deposit(tx)
                 })
