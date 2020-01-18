@@ -1,5 +1,6 @@
 require('dotenv').config();
 import express from "express";
+const reload = require('./services/reload')();
 import connectDB from "./config/connectDB";
 import viewConfig from "./config/viewConfig";
 import initRouter from "./routes/index";
