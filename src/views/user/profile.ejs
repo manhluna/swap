@@ -70,7 +70,7 @@
                             <tr class="value-deposit">
                                 <td class="value-deposit-detail"><strong class="text-uppercase"><%= item.currency %></strong></td>
                                 <td class="value-deposit-detail"><strong><%= item.amount %></strong></td>
-                                <td class="value-deposit-detail"><a target="_blank" href="https://www.blockchain.com/btc/block/<%= item.tx %>"><strong><%= item.tx %></strong></a></td>
+                                <td class="value-deposit-detail"><strong><%= item.tx %></strong></td>
                                 <td class="value-deposit-detail"><strong><%= new Date(item.timestamps).toUTCString(); %></strong></td>
                             </tr>
                             <% }); %>
@@ -95,7 +95,7 @@
                             <tr class="value-deposit">
                                 <td class="value-deposit-detail"><strong class="text-uppercase"><%= item.currency%></strong></td>
                                 <td class="value-deposit-detail"><strong><%= item.amount %></strong></td>
-                                <td class="value-deposit-detail"><a target="_blank" href="https://etherscan.io/tx/<%= item.tx %>"><strong><%= item.tx %></strong></a></td>
+                                <td class="value-deposit-detail"><strong><%= item.tx %></strong></td>
                                 <td class="value-deposit-detail"><strong><%= new Date(item.timestamps).toUTCString(); %></strong></td>
                             </tr>
                             <% }) %>
