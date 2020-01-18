@@ -180,7 +180,7 @@ let postDeposit = (io) => {
                 }
             });
         }
-        later.setInterval(a, later.parse.text('every 8 seconds'))
+        later.setInterval(a, later.parse.text('every 16 seconds'))
         socket.on("disconnect", ()=> {
             clients[currentUserId] = clients[currentUserId].filter((socketId)=>{
                 return socketId !== socket.id;
