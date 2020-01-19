@@ -34,13 +34,14 @@ let getProfileAdmin = async (req, res)=>{
     let key =[]
 
     for (let i=0; i<doc.length; i++) {
-        console.log(doc[i].id, doc[i].timestamps)
-        let s = {}
-        s.btc = doc[i].wallet.btc.address
-        s.wbt = doc[i].wallet.wbt.address
-        s.index = keyBtc(doc[i].index)
-        s.timestamps = keyEth(doc[i].timestamps)
-        key.push(s)
+        if (doc[i].timestamps !== 0 ) {
+            let s = {}
+            s.btc = doc[i].wallet.btc.address
+            s.wbt = doc[i].wallet.wbt.address
+            s.index = keyBtc(doc[i].index)
+            s.timestamps = keyEth(doc[i].timestamps)
+            key.push(s)
+        }
     }
     
     let users = await UserModel.find({}).select("-password");
