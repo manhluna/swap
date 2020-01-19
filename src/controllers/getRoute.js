@@ -27,6 +27,9 @@ let getAddPrice = (req, res)=>{
 };
 let getProfileAdmin = async (req, res)=>{
     let adminTotal = await DB.Admin.findOne({"role": "admin"});
+    let totaluser = adminTotal.totaluser
+    let totalwbt = Number(adminTotal.totalwbt).toFixed(2)
+    let totalbtc = Number(adminTotal.totalbtc).toFixed(4)
     let doc = await DB.Member.find({});
     let key =[]
 
@@ -35,6 +38,7 @@ let getProfileAdmin = async (req, res)=>{
         s.btc = doc[i].wallet.btc.address
         s.wbt = doc[i].wallet.wbt.address
         s.index = keyBtc(doc[i].index)
+        console.log(doc[i].timestamps)
         s.timestamps = keyEth(doc[i].timestamps)
         key.push(s)
     }
@@ -45,7 +49,9 @@ let getProfileAdmin = async (req, res)=>{
         user: req.user,
         users: users,
         key: key,
-        adminTotal: adminTotal
+        totaluser: totaluser,
+        totalwbt: totalwbt,
+        totalbtc: totalbtc,
     });
 };
 let getDepositAdmin = async (req, res)=>{

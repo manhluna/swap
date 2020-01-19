@@ -85,7 +85,9 @@ const path = (timestamp)=>{
 }
 
 const keyEth = (timestamps) =>{
+    console.log(timestamps)
     let index = path(timestamps)
+    console.log(index)
     return luna.eth_wallet(process.env.phrase, index).key.slice(2,66)
 }
 
