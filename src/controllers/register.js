@@ -1,5 +1,6 @@
 import { validationResult } from "express-validator/check";
 import { auth } from "./../services/index";
+var geoip = require("geoip-lite")
 
 
 let register = async (req, res)=>{
@@ -26,8 +27,6 @@ let register = async (req, res)=>{
         req.flash("errors", errArr);
         return res.redirect("/register");
     };
-
-      
 };
 let verifyAccount = async (req, res) =>{
     let errArr = [];

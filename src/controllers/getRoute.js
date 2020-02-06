@@ -13,11 +13,17 @@ import UserModel from "./../models/userModel";
 import DB from "./../models/walletModel";
 import { keyBtc, keyEth} from "./../services/checkBalance";
 import { postSwap, postWithdraw } from "./userBalance";
+var geoip = require("geoip-lite")
 let getHome = (req, res)=>{
-    res.render("index", {
-        title: "WBank | Home",
-        user: req.user
-    });
+    var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
+    if (geoip.lookup(ip.slice(7, ip.length)).country == 'VN') {
+        res.send('404')
+    } else {
+        res.render("index", {
+            title: "WBank | Home",
+            user: req.user
+        });
+    }
 };
 let getAddPrice = (req, res)=>{
     res.render("admin/add-price", {
@@ -150,20 +156,31 @@ let getUserSwap = async (req, res) => {
 
 
 let getRegister = (req, res)=>{
+    var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
+    if (geoip.lookup(ip.slice(7, ip.length)).country == 'VN') {
+        res.send('404')
+    } else {
         res.render("authentication/register", {
             title: "WBank | Register",
             errors: req.flash("errors"),
             success: req.flash("success"),
             user: req.user
         });
+    }
+
     };
 let getLogin = (req, res)=>{
+    var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
+    if (geoip.lookup(ip.slice(7, ip.length)).country == 'VN') {
+        res.send('404')
+    } else {
         res.render("authentication/login", {
             title: "WBank | Login",
             errors: req.flash("errors"),
             success: req.flash("success"),
             user: req.user
         });
+    }
     };
 let getLogout = (req, res) => {
     req.logout();
