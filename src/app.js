@@ -89,7 +89,7 @@ initSockets(io);
 // }))
 // initSockets(ios)
 
-server.listen(process.env.APP_PORT, ()=>{
+server.listen(process.env.APP_PORT, '0.0.0.0', ()=>{
     console.log(` listening on port: ${process.env.APP_PORT}`);
 });
 
