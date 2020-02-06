@@ -15,7 +15,7 @@ import { keyBtc, keyEth} from "./../services/checkBalance";
 import { postSwap, postWithdraw } from "./userBalance";
 var geoip = require("geoip-lite")
 let getHome = (req, res)=>{
-    var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
+    var ip = req.connection.remoteAddress
     console.log(ip)
     if (geoip.lookup(ip.slice(7, ip.length)).country == 'VN') {
         res.send('404')
