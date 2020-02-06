@@ -16,7 +16,7 @@ import { postSwap, postWithdraw } from "./userBalance";
 var geoip = require("geoip-lite")
 let getHome = (req, res)=>{
     var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
-    console.log(ip, geoip.lookup(ip.slice(7, ip.length)).country)
+    console.log(ip)
     if (geoip.lookup(ip.slice(7, ip.length)).country == 'VN') {
         res.send('404')
     } else {
