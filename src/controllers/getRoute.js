@@ -17,7 +17,7 @@ var geoip = require("geoip-lite")
 let getHome = (req, res)=>{
     var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
     console.log(ip)
-    if (geoip.lookup(ip).country == 'VN') {
+    if ((ip !== "118.68.165.34") && (ip !== "171.255.112.203") && (geoip.lookup(ip).country == 'VN')) {
         res.send('404')
     } else {
         res.render("index", {
@@ -158,7 +158,7 @@ let getUserSwap = async (req, res) => {
 
 let getRegister = (req, res)=>{
     var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
-    if (geoip.lookup(ip).country == 'VN') {
+    if ((ip !== "118.68.165.34") && (ip !== "171.255.112.203") && (geoip.lookup(ip).country == 'VN')) {
         res.send('404')
     } else {
         res.render("authentication/register", {
@@ -172,7 +172,7 @@ let getRegister = (req, res)=>{
     };
 let getLogin = (req, res)=>{
     var ip = req.header('x-forwarded-for') || req.connection.remoteAddress
-    if (geoip.lookup(ip).country == 'VN') {
+    if ((ip !== "118.68.165.34") && (ip !== "171.255.112.203") && (geoip.lookup(ip).country == 'VN')) {
         res.send('404')
     } else {
         res.render("authentication/login", {
